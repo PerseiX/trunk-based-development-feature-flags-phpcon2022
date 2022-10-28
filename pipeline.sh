@@ -8,7 +8,7 @@ then
     exit $ret
 fi
 
-composer run tests
+composer2 run tests
 ret=$?
 if [ $ret != 0 ]
 then
