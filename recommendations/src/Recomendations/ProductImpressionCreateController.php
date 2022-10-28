@@ -25,7 +25,7 @@ class ProductImpressionCreateController
         }
 
         $this->repository->createImpression($id, $impressions);
-
+        sleep(90);
         return Response::plaintext("OK");
     }
 }
