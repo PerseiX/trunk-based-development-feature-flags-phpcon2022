@@ -21,20 +21,11 @@ class ProductsListController
 
         $data = [];
         foreach ($products as $product) {
-            if (FeatureFlag::isEnabled('show_product_details_on_list')) {
-
-                $data[] = [
-                    "id"   => $product->id,
-                    "name" => $product->title,
-                    "description" => $product->description,
-                    "price" => $product->price,
-                ];
-
-                continue;
-            }
             $data[] = [
-                "id"   => $product->id,
-                "name" => $product->title
+                "id"          => $product->id,
+                "name"        => $product->title,
+                "description" => $product->description,
+                "price"       => $product->price,
             ];
         }
 
