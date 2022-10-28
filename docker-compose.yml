@@ -9,6 +9,7 @@ services:
     environment:
       X_LISTEN: 0.0.0.0:8181
       RECOMMENDATIONS_SERVICE_URL: http://php-rec:8182
+      FEATURE_FLAG_CREATE_IMPRESSION_ON_PRODUCT_LOOKUP: 1
     working_dir: /app/public
     ports:
       - 8181:8181
@@ -18,6 +19,7 @@ services:
     build: ./recommendations
     environment:
       X_LISTEN: 0.0.0.0:8182
+      FEATURE_FLAG_CREATE_IMPRESSION_ON_PRODUCT_LOOKUP: 1
     working_dir: /app/public
     ports:
       - 8182:8182
