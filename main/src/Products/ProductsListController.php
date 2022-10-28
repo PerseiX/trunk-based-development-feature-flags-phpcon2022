@@ -4,6 +4,7 @@ namespace Tbd\Main\Products;
 
 use Psr\Http\Message\ServerRequestInterface;
 use React\Http\Message\Response;
+use Tbd\Main\FeatureFlags\FeatureFlag;
 
 class ProductsListController
 {
@@ -19,9 +20,20 @@ class ProductsListController
         $products = $this->repository->listProducts();
 
         $data = [];
-        foreach($products as $product) {
+        foreach ($products as $product) {
+            if (FeatureFlag::isEnabled('show_product_details_on_list')) {
+
+                $data[] = [
+                    "id"   => $product->id,
+                    "name" => $product->title,
+                    "description" => $product->description,
+                    "price" => $product->price,
+                ];
+
+                continue;
+            }
             $data[] = [
-                "id" => $product->id,
+                "id"   => $product->id,
                 "name" => $product->title
             ];
         }
