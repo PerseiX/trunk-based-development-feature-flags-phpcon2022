@@ -23,11 +23,13 @@ jobs:
                   name: debug-output
                   path: output.log
 
-            - name: PHPUnit tests
+            - name: PHPUnit tests with enabled flag
               uses: php-actions/phpunit@v3
               with:
                   bootstrap: main/tests/bootstrap.php
                   args: '-v --testdox-html=main/tests/_output/report.html main/tests'
+              env:
+                  FEATURE_FLAG_SHOW_PRODUCT_DETAILS_ON_LIST: 1
             - uses: actions/upload-artifact@v2
               with:
                   name: test-report
